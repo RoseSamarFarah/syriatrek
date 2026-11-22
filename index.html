@@ -76,6 +76,8 @@ form{display:grid;gap:10px;margin-top:22px}
 .row button{padding:0 28px;font-size:14px;letter-spacing:.14em;text-transform:uppercase}
 @media (max-width:640px){.row{grid-template-columns:1fr}.row input+input{border-left:0!important;border-top:1px solid rgba(40,30,20,.25)!important}.row button{padding:16px}}
 #signup h2{font-size:clamp(32px,4.4vw,44px)}
+.join{display:inline-block;margin-top:14px;padding:16px 34px;background:var(--basalt);color:#fff;border:0;font-size:14px;letter-spacing:.14em;text-transform:uppercase;transition:background .2s}
+.join:hover{background:#4a3f39}
 #signup .err,#signup .status{text-align:center}
 label{display:grid;gap:2px;font-size:16px;color:var(--soft)}
 input[type=text],input[type=email],input[type=tel],textarea{font:inherit;font-size:19px;color:var(--ink);padding:8px 0;border:0;border-bottom:1px solid rgba(40,30,20,.3);background:transparent;border-radius:0}
@@ -142,7 +144,7 @@ footer{text-align:center;padding:40px 24px 56px;font-style:italic;color:var(--mu
   <div class="press fade">
     <a href="https://www.gqmiddleeast.com/article/why-damascus-is-worth-visiting" target="_blank" rel="noopener"><img src="img/khan.jpg" alt=""><div><div class="pub">GQ Middle East</div><div class="ttl">Why Damascus is worth visiting</div></div></a>
     <a href="https://www.admiddleeast.com/story/5-cool-and-contemporary-spots-to-check-out-in-old-damascus" target="_blank" rel="noopener"><img src="img/gallery.jpg" alt=""><div><div class="pub">AD Middle East</div><div class="ttl">5 cool and contemporary spots to check out in Old Damascus</div></div></a>
-    <a href="https://www.architecturaldigest.in/story/inside-a-beautifully-restored-19th-century-damascus-home/" target="_blank" rel="noopener"><img src="img/salon.jpg" alt=""><div><div class="pub">AD India</div><div class="ttl">Inside a beautifully restored 19th-century Damascus home</div></div></a>
+    <a href="https://www.architecturaldigest.in/story/inside-a-beautifully-restored-19th-century-damascus-home/" target="_blank" rel="noopener"><img src="img/salon.jpg" alt=""><div><div class="pub">Architectural Digest</div><div class="ttl">Inside a beautifully restored 19th-century Damascus home</div></div></a>
   </div>
 </section>
 
@@ -170,26 +172,8 @@ footer{text-align:center;padding:40px 24px 56px;font-style:italic;color:var(--mu
 
 <section class="block col center" id="signup" style="padding-top:60px">
   <h2>Register Interest</h2>
-  <form id="form" novalidate>
-    <div class="row">
-      <input type="email" name="email" autocomplete="email" placeholder="Email" required aria-label="Email">
-      <input type="tel" name="phone" autocomplete="tel" placeholder="WhatsApp number" required aria-label="WhatsApp number">
-      <button type="submit" id="submit">Sign Up</button>
-    </div>
-    <div class="err" id="err" role="alert"></div>
-    <p class="status" id="status"></p>
-  </form>
-  <div id="done" class="done hidden">
-    <h3>You're on the list</h3>
-    <p id="doneText"></p>
-    <button class="ghost" type="button" id="edit">Edit</button>
-  </div>
-  <div id="fallback" class="hidden">
-    <p>We couldn't save this here. Copy your details and send them to Rose.</p>
-    <div class="copybox" id="copybox"></div>
-    <button type="button" id="copyBtn">Copy</button>
-    <p class="status" id="copyStatus"></p>
-  </div>
+  <p class="fade">Join the WhatsApp group to follow along and get the details as they're confirmed.</p>
+  <a class="join" href="https://chat.whatsapp.com/JUAQg25uCdBJMdCzT8yyAy" target="_blank" rel="noopener">Join the WhatsApp Group</a>
 </section>
 
 <div class="stripes"></div>
@@ -216,65 +200,6 @@ footer{text-align:center;padding:40px 24px 56px;font-style:italic;color:var(--mu
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.2, rootMargin:'0px 0px -6% 0px'});
   document.querySelectorAll('.fade').forEach(el => io.observe(el));
 
-  /* ---------- sign-up ---------- */
-  const form = document.getElementById('form');
-  const err = document.getElementById('err');
-  const statusEl = document.getElementById('status');
-  const done = document.getElementById('done');
-  const fallback = document.getElementById('fallback');
-  const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  let db = null, user = null, myId = null, ready = false;
-  const timer = setTimeout(() => { if (!ready) statusEl.textContent = ''; }, 10000);
-  (async () => {
-    try {
-      db = await claude.use('db');
-      user = await claude.use('user');
-      if (db && user) {
-        myId = await user.id();
-        ready = true;
-        const snap = await db.doc('signups/' + myId).get();
-        const data = readSnap(snap);
-        if (data && data.email) { form.elements.email.value = data.email; form.elements.phone.value = data.phone || ''; showDone(data); }
-      }
-    } catch (e) {}
-    clearTimeout(timer);
-  })();
-  function readSnap(s){
-    if (!s) return null;
-    if (typeof s.data === 'function') return s.exists === false ? null : s.data();
-    if (s.data && typeof s.data === 'object') return s.data;
-    return typeof s === 'object' ? s : null;
-  }
-  function showDone(d){
-    form.classList.add('hidden'); fallback.classList.add('hidden'); done.classList.remove('hidden');
-    document.getElementById('doneText').textContent = `We'll be in touch at ${d.email}.`;
-  }
-  document.getElementById('edit').addEventListener('click', () => { done.classList.add('hidden'); form.classList.remove('hidden'); });
-  form.addEventListener('submit', async (ev) => {
-    ev.preventDefault();
-    err.textContent = '';
-    const d = { email: form.elements.email.value.trim(), phone: form.elements.phone.value.trim() };
-    if (!EMAIL.test(d.email)) return err.textContent = 'Please add a valid email.';
-    if (d.phone.replace(/\D/g, '').length < 8) return err.textContent = 'Please add your WhatsApp number with country code.';
-    const btn = document.getElementById('submit');
-    btn.disabled = true; statusEl.textContent = 'Saving…';
-    try {
-      if (!ready || !db || !myId) throw new Error('unavailable');
-      await db.doc('signups/' + myId).set(Object.assign({}, d, { updatedAt: new Date().toISOString() }));
-      statusEl.textContent = '';
-      showDone(d);
-    } catch (e) {
-      statusEl.textContent = '';
-      document.getElementById('copybox').textContent = `Syria Trek\nEmail: ${d.email}\nWhatsApp: ${d.phone}`;
-      form.classList.add('hidden'); fallback.classList.remove('hidden');
-    } finally { btn.disabled = false; }
-  });
-  document.getElementById('copyBtn').addEventListener('click', async () => {
-    const s = document.getElementById('copyStatus');
-    try { await navigator.clipboard.writeText(document.getElementById('copybox').textContent); s.textContent = 'Copied.'; }
-    catch (e) { s.textContent = 'Select the text above and copy it.'; }
-  });
 })();
 </script>
 </body>
