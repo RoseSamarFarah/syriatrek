@@ -99,6 +99,32 @@ button:hover{background:#4a3f39}button[disabled]{opacity:.6}
 .copybox{white-space:pre-wrap;font-size:16px;padding:12px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin:10px 0}
 footer{text-align:center;padding:40px 24px 56px;font-style:italic;color:var(--muted)}
 @media (prefers-reduced-motion:reduce){.fade{transition:none;opacity:1;transform:none}.bleed img{transform:none!important}}
+
+@media (max-width:700px){
+  body{font-size:17px;line-height:1.55}
+  .col,section.block.col,.block{padding-left:20px!important;padding-right:20px!important;max-width:100%;box-sizing:border-box}
+  .stripes,.bleed,.pair{margin-left:20px!important;margin-right:20px!important}
+  .pair{display:grid;grid-template-columns:1fr;gap:20px}
+  .pair .bleed{margin:0!important;height:auto;aspect-ratio:3/4}
+  .hero{height:auto;aspect-ratio:4/5}
+  .wide{height:auto;aspect-ratio:4/3}
+  .bleed img{height:100%;top:0;transform:none!important}
+  header{padding:48px 20px 32px}
+  header h1{font-size:60px}
+  header .ar{font-size:18px}
+  header .sub{font-size:18px}
+  .block{padding:40px 0}
+  .lede{font-size:26px}
+  .block h3{font-size:28px}
+  .meet{grid-template-columns:1fr;gap:22px}
+  .meet b{font-size:22px}
+  .press{grid-template-columns:1fr;gap:26px}
+  .press .ttl{font-size:19px}
+  .cost{grid-template-columns:1fr}
+  .cost>div+div{border-left:0;padding-left:0;border-top:1px solid var(--rule);padding-top:16px;margin-top:12px}
+  .num{font-size:32px}
+  .join{display:block;padding:16px}
+}
 </style>
 </head>
 <body>
