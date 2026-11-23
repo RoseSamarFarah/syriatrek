@@ -104,6 +104,18 @@ a:hover{border-bottom-color:var(--ink)}
 .safe h4{font-weight:400;font-size:26px;margin:4px 0 10px;color:var(--ink)}
 .safe p{font-size:17px}
 @media (max-width:700px){.safe{padding:22px 18px 10px}}
+.trip-note{margin:34px 0 0;font-size:18px;color:var(--ink)}
+.gallery-wrap{max-width:1160px;margin:-34px auto 60px;padding:0 24px;position:relative}
+.gallery{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+.gallery::-webkit-scrollbar{display:none}
+.g-item{flex:0 0 calc((100% - 28px)/3);margin:0;scroll-snap-align:start;aspect-ratio:3/4;overflow:hidden;background:#eee}
+.g-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.g-item:hover img{transform:scale(1.03)}
+.g-nav{display:flex;justify-content:flex-end;gap:10px;margin-top:16px}
+.gallery-wrap button.g-btn{width:42px;height:42px;padding:0;margin:0;border-radius:50%;border:1px solid rgba(40,30,20,.35);background:#fff;color:var(--ink);font-size:18px;letter-spacing:0;text-transform:none;line-height:1;box-shadow:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:background .2s,opacity .2s}
+.gallery-wrap button.g-btn:hover{background:#f3efe8}
+.gallery-wrap button.g-btn:disabled{opacity:.3;cursor:default}
+@media (max-width:700px){.gallery-wrap{padding:0 0 0 20px;margin-left:0!important;margin-right:0!important}.g-item{flex-basis:76%}.gallery{gap:10px;padding-right:20px}.g-nav{display:none}}
 /* form */
 h2{font-size:clamp(38px,5vw,52px);line-height:1.05;margin-bottom:14px}
 form{display:grid;gap:10px;margin-top:22px}
@@ -218,12 +230,12 @@ footer{text-align:center;padding:40px 24px 56px;font-style:italic;color:var(--mu
 <section class="block col" style="padding-top:60px">
   <h3 class="fade">Indicative Itinerary</h3>
   <ol class="days">
-    <li class="day fade"><div class="when"><b>13</b><span>Saturday</span><em>Beirut, Lebanon</em></div><ul><li><div class="it-row"><span>Arrival in Beirut</span></div></li><li class="has"><div class="it-row"><span>Drinks on the <a href="http://www.albergobeirut.com/" target="_blank" rel="noopener">Albergo</a> rooftop</span></div><div class="detail" id="d13-1"><div class="inner">A 1930s mansion in Achrafieh with a rooftop garden and views over the city to the sea</div></div></li><li class="has"><div class="it-row"><span>Dinner at <a href="https://www.lizabeirut.com/" target="_blank" rel="noopener">Liza</a></span></div><div class="detail" id="d13-2"><div class="inner">Contemporary Lebanese cooking in a restored 19th-century palace</div></div></li></ul></li>
-    <li class="day fade"><div class="when"><b>14</b><span>Sunday</span><em>Damascus, Syria</em></div><ul><li><div class="it-row"><span>Drive to Damascus</span></div></li><li><div class="it-row"><span>Lunch and a first walk through the Old City</span></div></li><li class="has"><div class="it-row"><span>Dinner at the home of Lina Attar Ajami</span></div><div class="detail" id="d14-2"><div class="inner">Syrian art collector and patron Lina Attar Ajami hosts us at her home, recently featured in Architectural Digest, and speaks to us about Syria's art scene<a class="mini" href="https://www.architecturaldigest.in/story/inside-a-beautifully-restored-19th-century-damascus-home/" target="_blank" rel="noopener"><img src="img/salon.jpg" alt=""><span><small>Architectural Digest</small>Inside a beautifully restored 19th-century Damascus home</span></a></div></div></li></ul></li>
-    <li class="day fade"><div class="when"><b>15</b><span>Monday</span><em>Damascus, Syria</em></div><ul><li><div class="it-row"><span>Breakfast in the hotel courtyard</span></div></li><li class="has"><div class="it-row"><span><a href="https://en.wikipedia.org/wiki/Al-Hamidiyah_Souq" target="_blank" rel="noopener">Al-Hamidiyeh Souq</a> and <a href="https://en.wikipedia.org/wiki/Khan_As%27ad_Pasha" target="_blank" rel="noopener">Khan As'ad Pasha</a></span></div><div class="detail" id="d15-1"><div class="inner">The Old City's great covered market, and the largest caravanserai in the Old City, built in 1752</div></div></li><li class="has"><div class="it-row"><span>Visit to a leading Syrian startup</span></div><div class="detail" id="d15-2"><div class="inner">Meet the founders at their headquarters and hear what it takes to build a company in Syria today</div></div></li><li><div class="it-row"><span>Dinner in the Old City</span></div></li></ul></li>
-    <li class="day fade"><div class="when"><b>16</b><span>Tuesday</span><em>Damascus, Syria</em></div><ul><li class="has"><div class="it-row"><span>Meetings with policymakers</span></div><div class="detail" id="d16-0"><div class="inner">Conversations on Syria's reconstruction and the challenges and opportunities facing the country today</div></div></li></ul></li>
+    <li class="day fade"><div class="when"><b>13</b><span>Saturday</span><em>Beirut, Lebanon</em></div><ul><li><div class="it-row"><span>Arrival in Beirut</span></div></li><li class="has"><div class="it-row"><span>Drinks on the <a href="http://www.albergobeirut.com/" target="_blank" rel="noopener">Albergo</a> rooftop</span></div><div class="detail" id="d13-1"><div class="inner">A 1930s mansion with a rooftop garden over the city</div></div></li><li class="has"><div class="it-row"><span>Dinner at <a href="https://www.lizabeirut.com/" target="_blank" rel="noopener">Liza</a></span></div><div class="detail" id="d13-2"><div class="inner">Modern Lebanese cooking in a 19th-century palace</div></div></li></ul></li>
+    <li class="day fade"><div class="when"><b>14</b><span>Sunday</span><em>Damascus, Syria</em></div><ul><li><div class="it-row"><span>Drive to Damascus</span></div></li><li><div class="it-row"><span>Lunch and a first walk through the Old City</span></div></li><li class="has"><div class="it-row"><span>Dinner at the home of Lina Attar Ajami</span></div><div class="detail" id="d14-2"><div class="inner">The art collector and patron on Syria's art scene<a class="mini" href="https://www.architecturaldigest.in/story/inside-a-beautifully-restored-19th-century-damascus-home/" target="_blank" rel="noopener"><img src="img/salon.jpg" alt=""><span><small>Architectural Digest</small>Inside a beautifully restored 19th-century Damascus home</span></a></div></div></li></ul></li>
+    <li class="day fade"><div class="when"><b>15</b><span>Monday</span><em>Damascus, Syria</em></div><ul><li><div class="it-row"><span>Breakfast in the hotel courtyard</span></div></li><li class="has"><div class="it-row"><span><a href="https://en.wikipedia.org/wiki/Al-Hamidiyah_Souq" target="_blank" rel="noopener">Al-Hamidiyeh Souq</a> and <a href="https://en.wikipedia.org/wiki/Khan_As%27ad_Pasha" target="_blank" rel="noopener">Khan As'ad Pasha</a></span></div><div class="detail" id="d15-1"><div class="inner">The covered market and an 18th-century inn</div></div></li><li class="has"><div class="it-row"><span>Visit to a leading Syrian startup</span></div><div class="detail" id="d15-2"><div class="inner">Time with the founders at their headquarters</div></div></li><li><div class="it-row"><span>Dinner in the Old City</span></div></li></ul></li>
+    <li class="day fade"><div class="when"><b>16</b><span>Tuesday</span><em>Damascus, Syria</em></div><ul><li class="has"><div class="it-row"><span>Meetings with policymakers</span></div><div class="detail" id="d16-0"><div class="inner">On reconstruction and the road ahead for Syria</div></div></li></ul></li>
     <li class="day fade"><div class="when"><b>17</b><span>Wednesday</span><em>Damascus, Syria</em></div><ul><li class="has"><div class="it-row"><span>Day trip</span></div><div class="detail" id="d17-0"><div class="inner">Destination to be announced</div></div></li></ul></li>
-    <li class="day fade"><div class="when"><b>18</b><span>Thursday</span><em>Beirut, Lebanon</em></div><ul><li><div class="it-row"><span>Drive back to Beirut</span></div></li><li class="has"><div class="it-row"><span>Late lunch at <a href="https://kanz.com.lb/" target="_blank" rel="noopener">Beit Kanz</a></span></div><div class="detail" id="d18-1"><div class="inner">A restored heritage house on Sursock Street, run by the Lebanese charity Beit el Baraka</div></div></li><li class="has"><div class="it-row"><span>Afternoon in Gemmayze and Mar Mikhael</span></div><div class="detail" id="d18-2"><div class="inner">Galleries, design shops, and coffee in two of Beirut's liveliest neighborhoods</div></div></li><li><div class="it-row"><span>Farewell dinner</span></div></li></ul></li>
+    <li class="day fade"><div class="when"><b>18</b><span>Thursday</span><em>Beirut, Lebanon</em></div><ul><li><div class="it-row"><span>Drive back to Beirut</span></div></li><li class="has"><div class="it-row"><span>Late lunch at <a href="https://kanz.com.lb/" target="_blank" rel="noopener">Beit Kanz</a></span></div><div class="detail" id="d18-1"><div class="inner">A restored heritage house on Sursock Street</div></div></li><li class="has"><div class="it-row"><span>Afternoon in Gemmayze and Mar Mikhael</span></div><div class="detail" id="d18-2"><div class="inner">Galleries, design shops, and coffee</div></div></li><li><div class="it-row"><span>Farewell dinner</span></div></li></ul></li>
     <li class="day fade"><div class="when"><b>19</b><span>Friday</span><em>Beirut, Lebanon</em></div><ul><li><div class="it-row"><span>Departures</span></div></li></ul></li>
   </ol>
 </section>
@@ -236,7 +248,13 @@ footer{text-align:center;padding:40px 24px 56px;font-style:italic;color:var(--mu
     <p>Yes, Damascus is safe to visit. The civil war ended with the fall of the former regime in December 2024, and in January 2026 the new government reached an agreement with the Kurdish-led forces in the northeast to bring them into the national army.</p>
     <p>Syria is back on the international stage. President al-Sharaa addressed the UN General Assembly in 2025 and became the first Syrian head of state to visit the White House, where Syria joined the US-led coalition against ISIS. Its embassy in Washington has reopened, and the UN Secretary-General visited Damascus this summer.</p>
   </div>
+  <p class="trip-note fade">I've been to Syria twice this year. Here are a few photos from my trips.</p>
 </section>
+<div class="gallery-wrap fade">
+  <div class="gallery" id="gallery"><figure class="g-item"><img src="img/trip/1.jpg" alt="Courtyard of a restored house in Old Damascus" loading="lazy"></figure><figure class="g-item"><img src="img/trip/2.jpg" alt="Rose at the gate of a church in the Old City" loading="lazy"></figure><figure class="g-item"><img src="img/trip/3.jpg" alt="Striped minaret against a blue sky" loading="lazy"></figure><figure class="g-item"><img src="img/trip/4.jpg" alt="Dried Damascene rose petals and herbs in the souq" loading="lazy"></figure><figure class="g-item"><img src="img/trip/5.jpg" alt="Basalt arches and a striped marble courtyard" loading="lazy"></figure><figure class="g-item"><img src="img/trip/6.jpg" alt="Old City rooftops with Mount Qasioun behind" loading="lazy"></figure><figure class="g-item"><img src="img/trip/7.jpg" alt="Breakfast tables around a courtyard fountain" loading="lazy"></figure></div>
+  <div class="g-nav"><button type="button" class="g-btn" id="gPrev" aria-label="Previous photos">&#8592;</button><button type="button" class="g-btn" id="gNext" aria-label="Next photos">&#8594;</button></div>
+</div>
+
 
 <div class="stripes"></div>
 
@@ -281,6 +299,15 @@ footer{text-align:center;padding:40px 24px 56px;font-style:italic;color:var(--mu
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.2, rootMargin:'0px 0px -6% 0px'});
   document.querySelectorAll('.fade').forEach(el => io.observe(el));
 
+  (function(){
+    const g=document.getElementById('gallery'), p=document.getElementById('gPrev'), n=document.getElementById('gNext');
+    if(!g) return;
+    const step=()=>{const it=g.querySelector('.g-item'); return it ? it.getBoundingClientRect().width+14 : 300;};
+    const upd=()=>{p.disabled=g.scrollLeft<=4; n.disabled=g.scrollLeft+g.clientWidth>=g.scrollWidth-4;};
+    p.addEventListener('click',()=>g.scrollBy({left:-step(),behavior:'smooth'}));
+    n.addEventListener('click',()=>g.scrollBy({left:step(),behavior:'smooth'}));
+    g.addEventListener('scroll',upd,{passive:true}); window.addEventListener('resize',upd); upd();
+  })();
 })();
 </script>
 </body>
