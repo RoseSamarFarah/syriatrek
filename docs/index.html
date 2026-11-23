@@ -79,6 +79,17 @@ a:hover{border-bottom-color:var(--ink)}
 .press .dek{font-size:14px;line-height:1.4;color:var(--muted)}
 .fade{opacity:0;transform:translateY(16px);transition:opacity 1s ease,transform 1s ease}
 .fade.in{opacity:1;transform:none}
+.days{list-style:none;margin:10px 0 0;padding:0;border-bottom:1px solid var(--rule)}
+.day{display:grid;grid-template-columns:170px 1fr;gap:28px;padding:22px 0;border-top:1px solid var(--rule)}
+.day:first-child{border-top:1px solid var(--ink)}
+.when b{display:block;font-weight:400;font-size:22px;color:var(--ink);line-height:1.2}
+.when span{display:block;font-size:16px;color:var(--soft)}
+.when em{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-style:normal;color:var(--rose);margin-top:6px}
+.day ul{list-style:none;margin:0;padding:0}
+.day ul li{position:relative;padding-left:18px;margin:0 0 8px;font-size:17px;line-height:1.5;color:var(--soft)}
+.day ul li:last-child{margin-bottom:0}
+.day ul li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;background:var(--rose);transform:rotate(45deg);opacity:.7}
+@media (max-width:700px){.day{grid-template-columns:1fr;gap:10px;padding:18px 0}.when{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}.when b,.when span{display:inline}.when b{font-size:20px}.when em{margin:0 0 0 auto}}
 /* form */
 h2{font-size:clamp(38px,5vw,52px);line-height:1.05;margin-bottom:14px}
 form{display:grid;gap:10px;margin-top:22px}
@@ -189,6 +200,19 @@ footer{text-align:center;padding:40px 24px 56px;font-style:italic;color:var(--mu
 <div class="stripes thin"></div>
 <div style="height:28px"></div>
 <div class="bleed wide"><img src="img/khan.jpg" alt="Striped stone domes of Khan As'ad Pasha"></div>
+
+<section class="block col" style="padding-top:60px">
+  <h3 class="fade">Indicative Itinerary</h3>
+  <ol class="days">
+    <li class="day fade"><div class="when"><b>Saturday</b><span>13 March</span><em>Beirut</em></div><ul><li>Drinks on the Hotel Albergo rooftop</li><li>Dinner at Liza Beirut</li></ul></li>
+    <li class="day fade"><div class="when"><b>Sunday</b><span>14 March</span><em>Damascus</em></div><ul><li>Drive to Damascus</li><li>Lunch in the Old City</li><li>Explore the Old City</li><li>Dinner at the home of Syrian art collector and patron Lina Attar Ajami, who will speak to us about Syria's art scene and show us her home, recently featured in Architectural Digest</li></ul></li>
+    <li class="day fade"><div class="when"><b>Monday</b><span>15 March</span><em>Damascus</em></div><ul><li>Breakfast in the hotel courtyard</li><li>Visit Al-Hamidiyeh Souq and Khan As'ad Pasha, the largest caravanserai in the Old City</li><li>Meet the founders of a leading Syrian technology startup at its headquarters</li><li>Dinner</li></ul></li>
+    <li class="day fade"><div class="when"><b>Tuesday</b><span>16 March</span><em>Damascus</em></div><ul><li>Meet with policymakers on Syria's reconstruction and the challenges and opportunities facing the country today</li></ul></li>
+    <li class="day fade"><div class="when"><b>Wednesday</b><span>17 March</span><em>Damascus</em></div><ul><li>Day trip, destination to be announced</li></ul></li>
+    <li class="day fade"><div class="when"><b>Thursday</b><span>18 March</span><em>Beirut</em></div><ul><li>Drive back to Beirut</li><li>Late lunch at Beit Kanz</li><li>Explore the galleries and coffee shops of Mar Mikhael and Gemmayze</li><li>Farewell dinner</li></ul></li>
+    <li class="day fade"><div class="when"><b>Friday</b><span>19 March</span><em>Beirut</em></div><ul><li>Departures</li></ul></li>
+  </ol>
+</section>
 
 <section class="block col" style="padding-top:60px">
   <h3 class="fade">Syria Is Open</h3>
