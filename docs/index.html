@@ -99,6 +99,11 @@ a:hover{border-bottom-color:var(--ink)}
 .mini small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);margin-bottom:4px}
 .mini:hover span{text-decoration:underline}
 @media (max-width:700px){.day{grid-template-columns:1fr;gap:8px;padding-bottom:30px}.when{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}.when b{font-size:32px}.when span,.when em{display:inline;margin:0}.it-row{font-size:17px}}
+.safe{margin-top:30px;padding:26px 28px 14px;background:#fff;border:1px solid rgba(40,30,20,.22);border-top:0;position:relative}
+.safe::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:repeating-linear-gradient(180deg,var(--basalt) 0 2px,var(--lime) 2px 4px)}
+.safe h4{font-weight:400;font-size:26px;margin:4px 0 10px;color:var(--ink)}
+.safe p{font-size:17px}
+@media (max-width:700px){.safe{padding:22px 18px 10px}}
 /* form */
 h2{font-size:clamp(38px,5vw,52px);line-height:1.05;margin-bottom:14px}
 form{display:grid;gap:10px;margin-top:22px}
@@ -225,7 +230,12 @@ footer{text-align:center;padding:40px 24px 56px;font-style:italic;color:var(--mu
 
 <section class="block col" style="padding-top:60px">
   <h3 class="fade">Syria Is Open</h3>
-  <p class="fade">The Syrian civil war is over, the former regime fell, and foreign governments have lifted sanctions. Damascus airport is served by Qatar Airways, flydubai, Turkish Airlines, and others, and US citizens get a 30-day visa on arrival at the airport or at the Lebanese border. Syria received 3.5 million visitors in the first half of 2026. It's an exciting time to visit the country.</p>
+  <p class="fade">Foreign governments have lifted sanctions. Damascus airport is served by Qatar Airways, flydubai, Turkish Airlines, and others, and US citizens get a 30-day visa on arrival at the airport or at the Lebanese border. Syria received 3.5 million visitors in the first half of 2026. It's an exciting time to visit the country.</p>
+  <div class="safe fade">
+    <h4>Is It Safe?</h4>
+    <p>Yes, Damascus is safe to visit. The civil war ended with the fall of the former regime in December 2024, and in January 2026 the new government reached an agreement with the Kurdish-led forces in the northeast to bring them into the national army.</p>
+    <p>Syria is back on the international stage. President al-Sharaa addressed the UN General Assembly in 2025 and became the first Syrian head of state to visit the White House, where Syria joined the US-led coalition against ISIS. Its embassy in Washington has reopened, and the UN Secretary-General visited Damascus this summer.</p>
+  </div>
 </section>
 
 <div class="stripes"></div>
