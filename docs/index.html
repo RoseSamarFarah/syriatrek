@@ -99,11 +99,8 @@ a:hover{border-bottom-color:var(--ink)}
 .mini small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);margin-bottom:4px}
 .mini:hover span{text-decoration:underline}
 @media (max-width:700px){.day{grid-template-columns:1fr;gap:8px;padding-bottom:30px}.when{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}.when b{font-size:32px}.when span,.when em{display:inline;margin:0}.it-row{font-size:17px}}
-.safe{margin-top:30px;padding:26px 28px 14px;background:#fff;border:1px solid rgba(40,30,20,.22);border-top:0;position:relative}
-.safe::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:repeating-linear-gradient(180deg,var(--basalt) 0 2px,var(--lime) 2px 4px)}
-.safe h4{font-weight:400;font-size:26px;margin:4px 0 10px;color:var(--ink)}
-.safe p{font-size:17px}
-@media (max-width:700px){.safe{padding:22px 18px 10px}}
+.safe{margin-top:40px}
+.safe h4{font-weight:300;font-size:clamp(28px,3.4vw,36px);line-height:1.15;margin:0 0 14px;color:var(--ink)}
 .trip-note{margin:34px 0 0;font-size:18px;color:var(--ink)}
 .gallery-wrap{max-width:1160px;margin:-34px auto 60px;padding:0 24px;position:relative}
 .gallery{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:4px}
