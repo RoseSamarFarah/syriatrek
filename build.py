@@ -18,6 +18,7 @@ import minify_html
 SRC = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src')
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), 'docs')
 WIDTHS = [400, 800, 1200, 1800]
+QUALITY = 88  # WebP quality; high enough that photos look identical to the originals
 
 # rendered width of each image slot, used for the sizes attribute
 SIZES = {
@@ -46,14 +47,14 @@ def build_image(rel, cache):
     im = Image.open(path).convert('RGB')
     W, H = im.size
     widths = [w for w in WIDTHS if w < W] + [W]
-    digest = hashlib.sha1(open(path, 'rb').read()).hexdigest()[:10]
+    digest = hashlib.sha1(open(path, 'rb').read() + f'{QUALITY}{WIDTHS}'.encode()).hexdigest()[:10]
     stem = rel[len('img/'):].rsplit('.', 1)[0].replace('/', '-')
     out = []
     for w in widths:
         h = round(H * w / W)
         r = im if w == W else im.resize((w, h), Image.LANCZOS)
         name = f'img/{stem}.{digest}.{w}.webp'
-        r.save(os.path.join(OUT, name), 'WEBP', quality=80, method=6)
+        r.save(os.path.join(OUT, name), 'WEBP', quality=QUALITY, method=6)
         out.append((name, w))
     cache[rel] = (out, W, H)
     return cache[rel]
