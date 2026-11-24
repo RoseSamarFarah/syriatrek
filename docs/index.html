@@ -195,6 +195,10 @@ footer{text-align:center;padding:40px 24px 56px;font-style:italic;color:var(--mu
 @media (max-width:700px){.days .when{display:grid;grid-template-columns:auto 1fr auto;column-gap:12px;row-gap:2px;align-items:center}.days .when b{grid-row:1/3}.days .when span{grid-column:2;grid-row:1;align-self:end;line-height:1.2}.days .when em{grid-column:2;grid-row:2;align-self:start;font-size:11px}.days .when .ar{grid-column:3;grid-row:1/3;margin:0;font-size:13px}.route .sea{display:none}.route .pin{background:#fff;padding:0 2px}}
 .day+.day::before{content:"\00B7\2009\2009\00B7\2009\2009\00B7";position:absolute;left:0;right:0;top:-30px;transform:translateY(-50%);text-align:center;font-size:15px;line-height:1;color:var(--muted);opacity:.7}
 @media (max-width:700px){.day+.day::before{top:-24px}}
+.dots{height:0;position:relative;margin-top:-28px}
+.dots::before{content:"\00B7\2009\2009\00B7\2009\2009\00B7";position:absolute;left:0;right:0;top:0;transform:translateY(-50%);text-align:center;font-size:15px;line-height:1;color:var(--muted);opacity:.7}
+.dots+.block{padding-top:28px!important}
+@media (max-width:700px){.dots{margin-top:-20px}.dots+.block{padding-top:20px!important}}
 </style>
 </head>
 <body>
@@ -213,6 +217,7 @@ footer{text-align:center;padding:40px 24px 56px;font-style:italic;color:var(--mu
   <p class="lede fade center">Welcome to Damascus</p>
   <p class="fade">Damascus, the City of Jasmine, is the oldest continuously inhabited city in the world. It is known for its Roman gates and colonnades, its Ottoman-era courtyard houses, and streets and churches named in the Bible. We'll stay in and explore the Old City, a UNESCO World Heritage Site inside the Roman walls, with its souqs, the chapels and churches of the Christian quarter, the Umayyad Mosque, and the famous Khan As'ad Pasha, an 18th-century merchants' inn built in striped black-and-white stone.</p>
 </section>
+<div class="dots" aria-hidden="true"></div>
 
 <section class="block col">
   <h3 class="fade">Where We'll Stay</h3>
@@ -233,6 +238,7 @@ footer{text-align:center;padding:40px 24px 56px;font-style:italic;color:var(--mu
   </div>
 
 </section>
+<div class="dots" aria-hidden="true"></div>
 
 <section class="block col">
   <h3 class="fade">Recent Press</h3>
@@ -271,6 +277,7 @@ footer{text-align:center;padding:40px 24px 56px;font-style:italic;color:var(--mu
     <li class="day fade"><div class="when"><b>19</b><span>Friday</span><em>Beirut, Lebanon</em><i class="ar" lang="ar">الجمعة · بيروت</i></div><ul><li><div class="it-row"><span>Departure</span></div></li></ul></li>
   </ol>
 </section>
+<div class="dots" aria-hidden="true"></div>
 
 <section class="block col" style="padding-top:60px">
   <h3 class="fade">Syria Is Open</h3>
