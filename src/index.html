@@ -221,6 +221,11 @@ figure.pf,figure.kf{margin:0}
 .g-item:nth-child(even){transform:rotate(1.5deg)}
 .g-item img{height:100%}
 .when em.bey{color:#3f6478}
+.route circle.bey{stroke:#3f6478;fill:#3f6478}
+.route circle.dam{stroke:var(--rose);fill:var(--rose)}
+.route circle.minor.dam{fill:var(--rose)}
+.route .pin.bey b{color:#3f6478}
+.route .pin.dam b{color:var(--rose)}
 </style>
 </head>
 <body>
@@ -288,12 +293,12 @@ figure.pf,figure.kf{margin:0}
       <path class="coast" d="M308.5,-12.0 C305.5,-5.3 294.3,13.3 290.5,28.0 C286.8,42.7 292.8,64.0 286.0,76.0 C279.3,88.0 262.0,94.7 250.0,100.0 C238.0,105.3 219.3,100.0 214.0,108.0 C208.8,116.0 220.7,134.7 218.5,148.0 C216.2,161.3 208.0,174.7 200.5,188.0 C193.0,201.3 179.5,216.0 173.5,228.0 C167.5,240.0 172.8,246.7 164.5,260.0 C156.3,273.3 136.0,293.3 124.0,308.0 C112.0,322.7 97.8,341.3 92.5,348.0"/>
       <path class="road" d="M220.8,110.0 C230.9,113.7 254.1,127.0 281.5,132.0 C308.9,137.0 352.0,130.0 385.0,140.0 C418.0,150.0 454.8,174.7 479.5,192.0 C504.3,209.3 516.3,232.0 533.5,244.0 C550.8,256.0 574.8,260.7 583.0,264.0"/>
       <path class="road side" d="M583.0,264.0 C586.0,256.7 589.0,236.0 601.0,220.0 C613.0,204.0 637.8,182.7 655.0,168.0 C672.3,153.3 696.3,138.0 704.5,132.0"/>
-      <circle cx="220.8" cy="110.0" r="4"/><circle cx="583.0" cy="264.0" r="4"/><circle class="minor" cx="704.5" cy="132.0" r="3"/>
+      <circle class="bey" cx="220.8" cy="110.0" r="4"/><circle class="dam" cx="583.0" cy="264.0" r="4"/><circle class="minor dam" cx="704.5" cy="132.0" r="3"/>
     </svg>
     <span class="sea" style="left:4%;top:74%">Mediterranean</span>
-    <span class="pin lt" style="left:28.59%;top:33.33%"><b>Beirut</b> <i lang="ar">بيروت</i></span>
-    <span class="pin dn" style="left:75.52%;top:80.00%"><b>Damascus</b> <i lang="ar">دمشق</i></span>
-    <span class="pin ur" style="left:91.26%;top:40.00%"><b>Maaloula</b> <i lang="ar">معلولا</i></span>
+    <span class="pin lt bey" style="left:28.59%;top:33.33%"><b>Beirut</b> <i lang="ar">بيروت</i></span>
+    <span class="pin dn dam" style="left:75.52%;top:80.00%"><b>Damascus</b> <i lang="ar">دمشق</i></span>
+    <span class="pin ur dam" style="left:91.26%;top:40.00%"><b>Maaloula</b> <i lang="ar">معلولا</i></span>
   </div>
   <ol class="days">
     <li class="day fade"><div class="when"><b>13</b><span>Saturday</span><em class="bey">Beirut, Lebanon</em><i class="ar" lang="ar">السبت · بيروت</i></div><ul><li><div class="it-row"><span>Arrival</span></div></li><li class="has"><div class="it-row"><span>Drinks on the <a href="http://www.albergobeirut.com/" target="_blank" rel="noopener">Albergo</a> rooftop</span></div><div class="detail" id="dt1"><div class="inner">A 1930s mansion with a rooftop garden over the city</div></div></li></ul></li>
