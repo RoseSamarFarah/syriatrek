@@ -244,7 +244,7 @@ html.ungated #gate{display:none}
 #gate button{flex:none;border:0;background:none;color:#fff;font:inherit;font-size:22px;line-height:1;cursor:pointer;padding:0 0 0 12px;margin:0;box-shadow:none;width:auto;height:auto;letter-spacing:0;text-transform:none}
 #gate .g-err{min-height:20px;margin-top:10px;font-size:14px;color:rgba(255,255,255,.85)}
 </style>
-<script>try{document.documentElement.classList.add(localStorage.getItem('trek_email')?'ungated':'gated')}catch(e){document.documentElement.classList.add('gated')}</script>
+<script>document.documentElement.classList.add('gated')</script>
 </head>
 <body>
 <div id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
@@ -414,22 +414,21 @@ html.ungated #gate{display:none}
     post('trek_visits',{email:email,session_id:sid,first_visit:!!first,referrer:(document.referrer||'').slice(0,500)||null,device:w<700?'phone':w<1100?'tablet':'desktop',screen:w+'x'+innerHeight});
     track();
   }
-  if('scrollRestoration' in history && !email) history.scrollRestoration='manual';
-  if(email){visit(false)}
-  else{
-    var f=document.getElementById('g-form'), inp=document.getElementById('g-email'), err=document.getElementById('g-err');
-    f.addEventListener('submit',function(ev){
-      ev.preventDefault();
-      var v=(inp.value||'').trim().toLowerCase();
-      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){err.textContent='Please enter a valid email';return}
-      email=v; try{localStorage.setItem('trek_email',v)}catch(e){}
-      inp.blur(); window.scrollTo(0,0); root.scrollTop=0; document.body.scrollTop=0;
-      gate.classList.add('out'); root.classList.remove('gated'); requestAnimationFrame(function(){window.scrollTo(0,0)});
-      setTimeout(function(){root.classList.add('ungated')},650);
-      visit(true);
-    });
-    inp.addEventListener('input',function(){err.textContent=''});
-  }
+  if('scrollRestoration' in history) history.scrollRestoration='manual';
+  var known=email;
+  var f=document.getElementById('g-form'), inp=document.getElementById('g-email'), err=document.getElementById('g-err');
+  if(known) inp.value=known;
+  f.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var v=(inp.value||'').trim().toLowerCase();
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){err.textContent='Please enter a valid email';return}
+    email=v; try{localStorage.setItem('trek_email',v)}catch(e){}
+    inp.blur(); window.scrollTo(0,0); root.scrollTop=0; document.body.scrollTop=0;
+    gate.classList.add('out'); root.classList.remove('gated'); requestAnimationFrame(function(){window.scrollTo(0,0)});
+    setTimeout(function(){root.classList.add('ungated')},650);
+    visit(!known || known!==v);
+  });
+  inp.addEventListener('input',function(){err.textContent=''});
 
   function track(){
     var names={"Welcome to Damascus":"welcome","Where We'll Stay":"stay","Who We'll Meet":"meet","Recent Press":"press","Indicative Itinerary":"itinerary","Syria Is Open":"syria-open","Indicative Cost":"cost"};
