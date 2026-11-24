@@ -198,6 +198,12 @@ footer{text-align:center;padding:40px 24px 56px;font-style:italic;color:var(--mu
 .stripes.brk{margin-top:-10px}
 .stripes.brk+.block{padding-top:50px!important}
 @media (max-width:700px){.stripes.brk{margin-top:-4px}.stripes.brk+.block{padding-top:40px!important}}
+
+figure.pf,figure.kf{margin:0}
+.pcap{margin:10px 0 0;padding:0;text-align:center;font-size:15.5px;line-height:1.4;color:var(--muted)}
+.kf .pcap{max-width:1160px;margin:10px auto 0}
+@media (max-width:1208px){.kf .pcap{margin-left:24px;margin-right:24px}}
+@media (max-width:700px){.kf .pcap{margin-left:20px;margin-right:20px}.pcap{font-size:15px;margin-top:8px}}
 </style>
 </head>
 <body>
@@ -224,8 +230,8 @@ footer{text-align:center;padding:40px 24px 56px;font-style:italic;color:var(--mu
 </section>
 
 <div class="pair">
-  <div class="bleed"><img loading="lazy" decoding="async" src="img/doorway.jpg" alt="Doorway onto a painted room off a shaded courtyard"></div>
-  <div class="bleed"><img loading="lazy" decoding="async" src="img/ceiling.jpg" alt="Hand-painted floral arch"></div>
+  <figure class="pf"><div class="bleed"><img loading="lazy" decoding="async" src="img/doorway.jpg" alt="Doorway onto a painted room off a shaded courtyard"></div><figcaption class="pcap">Beit Al Ajami</figcaption></figure>
+  <figure class="pf"><div class="bleed"><img loading="lazy" decoding="async" src="img/ceiling.jpg" alt="Hand-painted floral arch"></div><figcaption class="pcap">La Capitale</figcaption></figure>
 </div>
 
 <section class="block col" style="padding-top:36px">
@@ -250,7 +256,7 @@ footer{text-align:center;padding:40px 24px 56px;font-style:italic;color:var(--mu
 
 <div class="stripes thin"></div>
 <div style="height:28px"></div>
-<div class="bleed wide"><img loading="lazy" decoding="async" src="img/khan.jpg" alt="Striped stone domes of Khan As'ad Pasha"></div>
+<figure class="kf"><div class="bleed wide"><img loading="lazy" decoding="async" src="img/khan.jpg" alt="Striped stone domes of Khan As'ad Pasha"></div><figcaption class="pcap">Khan As'ad Pasha</figcaption></figure>
 
 <section class="block col" style="padding-top:36px">
   <h3 class="fade">Indicative Itinerary</h3>
