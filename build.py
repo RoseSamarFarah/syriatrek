@@ -22,6 +22,7 @@ QUALITY = 88  # WebP quality; high enough that photos look identical to the orig
 
 # rendered width of each image slot, used for the sizes attribute
 SIZES = {
+    'gate':    '(orientation:portrait) 100vh, 100vw',
     'hero':    '(max-width:700px) 100vw, 1160px',
     'bleed':   '(max-width:700px) 100vw, 1160px',
     'pair':    '(max-width:700px) 100vw, 580px',
@@ -33,6 +34,7 @@ SIZES = {
 
 def slot_for(html, pos, src):
     before = html[max(0, pos - 400):pos]
+    if 'id="gate"' in before[-200:]: return 'gate'
     if 'bleed hero' in before[-200:]: return 'hero'
     if 'g-item' in before[-80:]: return 'gallery'
     if 'class="pf"' in before[-120:]: return 'pair'
@@ -41,20 +43,25 @@ def slot_for(html, pos, src):
     if 'bleed' in before[-120:]: return 'bleed'
     return 'card'
 
-def build_image(rel, cache):
+GATE_WIDTHS = [800, 1200, 1800, 2400, 3200]
+GATE_QUALITY = 92
+
+def build_image(rel, cache, widths_set=None, quality=None):
+    widths_set = widths_set or WIDTHS
+    quality = quality or QUALITY
     if rel in cache: return cache[rel]
     path = os.path.join(SRC, rel)
     im = Image.open(path).convert('RGB')
     W, H = im.size
-    widths = [w for w in WIDTHS if w < W] + [W]
-    digest = hashlib.sha1(open(path, 'rb').read() + f'{QUALITY}{WIDTHS}'.encode()).hexdigest()[:10]
+    widths = [w for w in widths_set if w < W] + [W]
+    digest = hashlib.sha1(open(path, 'rb').read() + f'{quality}{widths_set}'.encode()).hexdigest()[:10]
     stem = rel[len('img/'):].rsplit('.', 1)[0].replace('/', '-')
     out = []
     for w in widths:
         h = round(H * w / W)
         r = im if w == W else im.resize((w, h), Image.LANCZOS)
         name = f'img/{stem}.{digest}.{w}.webp'
-        r.save(os.path.join(OUT, name), 'WEBP', quality=QUALITY, method=6)
+        r.save(os.path.join(OUT, name), 'WEBP', quality=quality, method=6)
         out.append((name, w))
     cache[rel] = (out, W, H)
     return cache[rel]
@@ -75,8 +82,8 @@ def main():
         nonlocal hero
         tag = m.group(0)
         src = re.search(r'src="(img/[^"]+)"', tag).group(1)
-        variants, W, H = build_image(src, cache)
         slot = slot_for(html, m.start(), src)
+        variants, W, H = build_image(src, cache, *( (GATE_WIDTHS, GATE_QUALITY) if slot == 'gate' else () ))
         srcset = ', '.join(f'{n} {w}w' for n, w in variants)
         default = next((n for n, w in variants if w >= 800), variants[-1][0])
         new = re.sub(r'src="[^"]+"', f'src="{default}" srcset="{srcset}" sizes="{SIZES[slot]}"', tag)
