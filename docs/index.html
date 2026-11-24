@@ -207,6 +207,22 @@ figure.pf,figure.kf{margin:0}
 .kf .pcap{max-width:1160px;margin:10px auto 0}
 @media (max-width:1208px){.kf .pcap{margin-left:24px;margin-right:24px}}
 @media (max-width:700px){.kf .pcap{margin-left:20px;margin-right:20px}.pcap{font-size:13.5px;margin-top:8px}}
+
+.press-wide{max-width:1160px;margin:-34px auto 70px}
+@media (max-width:1208px){.press-wide{margin-left:24px;margin-right:24px}}
+.press-wide .press{grid-template-columns:repeat(4,1fr);gap:24px;margin-top:0}
+.press-wide .press .ttl{font-size:18px}
+@media (max-width:700px){
+  .press-wide{margin:-24px 0 50px!important}
+  .press-wide .press{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 20px;scroll-padding:0 20px}
+  .press-wide .press::-webkit-scrollbar{display:none}
+  .press-wide .press a{flex:0 0 72%;scroll-snap-align:start}
+  .press-wide .press .ttl{font-size:17px}
+}
+.gallery{padding:18px 6px 22px}
+.g-item{background:#fff;padding:7px;box-shadow:0 2px 10px rgba(40,30,20,.16);transform:rotate(-1.5deg)}
+.g-item:nth-child(even){transform:rotate(1.5deg)}
+.g-item img{height:100%}
 </style>
 </head>
 <body>
@@ -251,13 +267,16 @@ figure.pf,figure.kf{margin:0}
 
 <section class="block col">
   <h3 class="fade">Recent Press</h3>
-  <div class="press fade">
+
+</section>
+<div class="press-wide">
+<div class="press fade">
     <a href="https://www.gqmiddleeast.com/article/why-damascus-is-worth-visiting" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="img/talisman.jpg" alt="" style="object-position:50% 45%"><div><div class="pub">GQ Middle East</div><div class="ttl">Why Damascus is worth visiting</div></div></a>
     <a href="https://www.admiddleeast.com/story/what-to-expect-from-the-inaugural-art-week-syria" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="img/press4.jpg" alt=""><div><div class="pub">AD Middle East</div><div class="ttl">Art Week Syria kicks off in Damascus</div></div></a>
     <a href="https://www.admiddleeast.com/story/5-cool-and-contemporary-spots-to-check-out-in-old-damascus" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="img/soap.jpg" alt=""><div><div class="pub">AD Middle East</div><div class="ttl">5 cool and contemporary spots to check out in Old Damascus</div></div></a>
     <a href="https://www.architecturaldigest.in/story/inside-a-beautifully-restored-19th-century-damascus-home/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="img/lina.jpg" alt=""><div><div class="pub">Architectural Digest</div><div class="ttl">Inside a beautifully restored 19th-century Damascus home</div></div></a>
   </div>
-</section>
+</div>
 
 <div class="stripes thin"></div>
 <div style="height:28px"></div>
