@@ -243,6 +243,25 @@ html.ungated #gate{display:none}
 #gate input::placeholder{color:rgba(255,255,255,.78)}
 #gate button{flex:none;border:0;background:none;color:#fff;font:inherit;font-size:22px;line-height:1;cursor:pointer;padding:0 0 0 12px;margin:0;box-shadow:none;width:auto;height:auto;letter-spacing:0;text-transform:none}
 #gate .g-err{min-height:20px;margin-top:10px;font-size:14px;color:rgba(255,255,255,.85)}
+
+#signup .confirm-h{margin:60px 0 10px!important;text-align:center}
+#signup h2,#signup .confirm-h{margin-bottom:18px!important}
+#signup p{margin-top:0!important;margin-bottom:18px!important}
+#signup .join{margin-top:0!important}
+#signup .confirm-p{margin-top:0}
+.join.imin{background:var(--rose);color:#fff;cursor:pointer;font:inherit;font-size:14px;letter-spacing:.14em;text-transform:uppercase;border:0;border-radius:0;box-shadow:none;width:auto;height:auto}
+.join.imin:hover{background:#86392d}
+#signup .join{width:310px;padding-left:0;padding-right:0;text-align:center}
+@media (max-width:700px){#signup .join{min-width:0;width:100%;display:block}#signup .confirm-h{margin-top:48px!important}}
+#ask .ask-h{margin:0 0 18px!important;text-wrap:balance}
+#ask p{margin-top:0!important;margin-bottom:18px!important}
+.ask-f{max-width:520px;margin:6px auto 0;display:flex;align-items:flex-end;gap:12px;padding:0;border-bottom:1px solid var(--ink);text-align:left}
+.ask-f textarea{flex:1;display:block;border:0;background:transparent;font:inherit;font-size:18px;color:var(--ink);padding:4px 0 3px;resize:none;outline:0;line-height:1.5;overflow:hidden;height:34px;min-height:0;box-sizing:border-box;margin:0}
+.ask-f textarea::placeholder{color:var(--muted);font-style:italic}
+.ask-b{background:none;border:0;color:var(--ink);font:inherit;font-size:24px;line-height:1;padding:0 2px 7px;cursor:pointer;transition:transform .2s,color .2s}
+.ask-b:hover{transform:translateX(4px);color:var(--rose)}
+#imin.done{cursor:default}
+.ask-done{font-style:italic;color:var(--soft);margin:6px 0 0}
 </style>
 <script>document.documentElement.classList.add('gated')</script>
 </head>
@@ -376,10 +395,24 @@ html.ungated #gate{display:none}
 
 <div class="stripes thin"></div>
 
+<section class="block col center" id="ask" style="padding-top:60px;padding-bottom:50px">
+  <h3 class="confirm-h ask-h">Questions?</h3>
+  <p class="fade">Leave a question and I&rsquo;ll follow up with you 1:1.</p>
+  <form class="ask-f" id="ask-form" novalidate>
+    <textarea id="ask-q" rows="1" placeholder="Your question" aria-label="Your question"></textarea>
+    <button type="submit" class="ask-b" aria-label="Send">&rarr;</button>
+  </form>
+</section>
+
+<div class="stripes thin"></div>
+
 <section class="block col center" id="signup" style="padding-top:60px">
   <h2>Register Interest</h2>
-  <p class="fade">Join the WhatsApp group to follow along and get the details as they're confirmed. Confirmations are due December 20.</p>
+  <p class="fade">Join the WhatsApp group to follow along and get the details as they're confirmed.</p>
   <a class="join" href="https://chat.whatsapp.com/JUAQg25uCdBJMdCzT8yyAy" target="_blank" rel="noopener">Join the WhatsApp Group</a>
+  <h3 class="confirm-h">Confirm Attendance</h3>
+  <p class="confirm-p" id="imin-note">Ready to go? Click the button below to confirm your interest by December 20.</p>
+  <button class="join imin" type="button" id="imin">I&rsquo;m In</button>
 </section>
 
 <div class="stripes"></div>
@@ -414,6 +447,26 @@ html.ungated #gate{display:none}
     post('trek_visits',{email:email,session_id:sid,first_visit:!!first,referrer:(document.referrer||'').slice(0,500)||null,device:w<700?'phone':w<1100?'tablet':'desktop',screen:w+'x'+innerHeight});
     track();
   }
+
+  var ib=document.getElementById('imin'), note=document.getElementById('imin-note');
+  function setIn(){ib.classList.add('done');ib.innerHTML='You&rsquo;re In &#10003;';note.textContent='See you in Damascus.'}
+  try{if(localStorage.getItem('trek_in')) setIn()}catch(e){}
+  ib.addEventListener('click',function(){
+    if(ib.classList.contains('done')) return;
+    setIn(); try{localStorage.setItem('trek_in','1')}catch(e){}
+    post('trek_events',[{email:email,session_id:sid,kind:'confirm',name:'im-in',value:null}]);
+  });
+  var af=document.getElementById('ask-form'), aq=document.getElementById('ask-q');
+  function grow(){aq.style.height='34px';aq.style.height=Math.max(34,aq.scrollHeight)+'px'}
+  aq.addEventListener('input',grow);
+  aq.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey&&innerWidth>700){e.preventDefault();af.requestSubmit?af.requestSubmit():af.dispatchEvent(new Event('submit',{cancelable:true}))}});
+  af.addEventListener('submit',function(e){
+    e.preventDefault();
+    var q=(aq.value||'').trim(); if(!q){aq.focus();return}
+    post('trek_questions',{email:email,session_id:sid,question:q.slice(0,4000)});
+    var p=document.createElement('p'); p.className='ask-done'; p.textContent='Thank you. I\u2019ll be in touch soon.';
+    af.replaceWith(p);
+  });
   if('scrollRestoration' in history) history.scrollRestoration='manual';
   var known=email;
   var f=document.getElementById('g-form'), inp=document.getElementById('g-email'), err=document.getElementById('g-err');
@@ -431,7 +484,7 @@ html.ungated #gate{display:none}
   inp.addEventListener('input',function(){err.textContent=''});
 
   function track(){
-    var names={"Welcome to Damascus":"welcome","Where We'll Stay":"stay","Who We'll Meet":"meet","Recent Press":"press","Indicative Itinerary":"itinerary","Syria Is Open":"syria-open","Indicative Cost":"cost"};
+    var names={"Welcome to Damascus":"welcome","Where We'll Stay":"stay","Who We'll Meet":"meet","Recent Press":"press","Indicative Itinerary":"itinerary","Syria Is Open":"syria-open","Indicative Cost":"cost","Questions?":"questions","Register Interest":"register"};
     var zones=[];
     document.querySelectorAll('header, section, .press-wide, .gallery-wrap, .bleed, .pair').forEach(function(el){
       var n=null;
