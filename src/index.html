@@ -227,7 +227,9 @@ figure.pf,figure.kf{margin:0}
 .route .pin.bey b{color:#2a5aa6}
 .route .pin.dam b{color:var(--rose)}
 
-html.gated,html.gated body{overflow:hidden}
+html.gated,html.gated body{overflow:hidden;background:#2b2725}
+html.gated body>*:not(#gate){visibility:hidden}
+#gate{min-height:100vh;min-height:100lvh}
 html.ungated #gate{display:none}
 #gate{position:fixed;inset:0;z-index:100;background:#2b2725;transition:opacity .6s ease}
 #gate.out{opacity:0;pointer-events:none}
