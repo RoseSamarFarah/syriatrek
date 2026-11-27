@@ -358,6 +358,7 @@ html.ungated #gate{display:none}
 .jz-ig svg{width:20px;height:20px}
 </style>
 <script>document.documentElement.classList.add('gated')</script>
+<script>document.addEventListener('error',function(e){var i=e.target;if(i.tagName!=='IMG'||i.dataset.retry)return;i.dataset.retry=1;setTimeout(function(){var s=i.getAttribute('srcset');if(s)i.setAttribute('srcset',s.replace(/\.webp/g,'.webp?r=1'));i.src=i.getAttribute('src').split('?')[0]+'?r=1'},1200)},true)</script>
 </head>
 <body>
 <div id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
